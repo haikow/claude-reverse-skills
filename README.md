@@ -44,7 +44,7 @@ powershell -ExecutionPolicy Bypass -File install.ps1
 
 ## IDA Pro MCP（可选）
 
-`ida-reverse` 配合第三方 MIT 包 **`ida-multi-mcp`**（pip 安装，本身跨平台），但**需自备 IDA Pro 9.x + idalib（商业授权）**。安装与 MCP 配置见 **[`mcp/README.md`](mcp/README.md)**。
+`ida-reverse` 配合第三方 MIT 包 **`ida-multi-mcp`**（从 [GitHub 源码](https://github.com/MeroZemory/ida-multi-mcp) 安装，未上 PyPI；本身跨平台），但**需自备 IDA Pro 9.x + idalib（商业授权）**。安装与 MCP 配置见 **[`mcp/README.md`](mcp/README.md)**。
 
 ## 跨平台说明
 

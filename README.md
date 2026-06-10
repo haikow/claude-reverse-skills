@@ -2,6 +2,8 @@
 
 一套面向 **Claude Code**（及兼容的文件系统型 Agent）的**逆向工程 Skill 集合**，外加 IDA Pro MCP 的接入说明。跨平台（Linux / macOS / Windows），一条命令装进 `~/.claude/skills/`。
 
+> 🙏 **来源**：核心 Skill 来自 **linux.do 论坛 [@hisen](https://linux.do/u/hisen) 大佬**的分享 —— 原帖 👉 https://linux.do/t/topic/2142539 。本仓库仅做整理与跨平台适配，致谢原作者（详见文末「许可与致谢」）。
+
 ## 包含的 Skill
 
 | Skill | 用途 |
@@ -53,9 +55,10 @@ powershell -ExecutionPolicy Bypass -File install.ps1
 
 ## 许可与致谢
 
+- **核心 Skill 来源**：linux.do 论坛 **[@hisen](https://linux.do/u/hisen)** 大佬分享的帖子 👉 **https://linux.do/t/topic/2142539** 。本仓库只做了**整理 + 跨平台（Linux/Mac）适配**，核心内容归功于原作者，特此致谢 🙏。
 - 本仓库是 Skill 的**整理与跨平台适配**集合，非全部原创。
 - `reverse-engineering` skill 标注 **MIT**；`ida-multi-mcp` 为第三方 **MIT** 包（仅文档引用，未分发其源码）。
-- 各 skill 改编自社区/OpenCode 的 skill 集，原作者写死的本机路径已占位化（`YOURNAME`）。如你是某 skill 原作者、希望补充署名或调整授权，请提 Issue。
+- 适配时把原帖中写死的本机路径占位化（`YOURNAME`）。如原作者 @hisen 希望补充/调整署名、变更授权或下架，请提 Issue 或与我联系。
 - `apk-reverse/debug.keystore` 仅为本地调试签名用的占位密钥，**切勿用于正式发布**。
 
 ## 免责声明

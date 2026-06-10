@@ -1,0 +1,63 @@
+# claude-reverse-skills
+
+一套面向 **Claude Code**（及兼容的文件系统型 Agent）的**逆向工程 Skill 集合**，外加 IDA Pro MCP 的接入说明。跨平台（Linux / macOS / Windows），一条命令装进 `~/.claude/skills/`。
+
+## 包含的 Skill
+
+| Skill | 用途 |
+|---|---|
+| `reverse-engineering` | 通用逆向方法论（混淆/壳/字节码/反调试/固件/CTF 等思路） |
+| `ida-reverse` | IDA Pro / idalib 逆向（配合 `ida-multi-mcp`，见 `mcp/`） |
+| `apk-reverse` | Android APK：解包、Java 反编译、smali、重打包签名、Frida Hook、so 分析 |
+| `radare2` | radare2 / rabin2 命令行逆向（侦察、反汇编、补丁、diff） |
+| `mcp-js-reverse-playbook` | 前端 JavaScript 逆向（签名链定位、补环境、运行时采样） |
+
+## 快速安装
+
+```bash
+# Linux / macOS
+git clone https://github.com/haikow/claude-reverse-skills && cd claude-reverse-skills
+./install.sh        # 拷到 ~/.claude/skills/
+
+# Windows (PowerShell)
+git clone https://github.com/haikow/claude-reverse-skills; cd claude-reverse-skills
+powershell -ExecutionPolicy Bypass -File install.ps1
+```
+
+安装脚本会把 5 个 skill 复制到 Claude Code 的 skills 目录，并列出**还需自行安装的命令行工具**（见下）。
+
+## 前置工具（按需安装，均走 PATH）
+
+| 工具 | Linux/Mac | Windows |
+|---|---|---|
+| radare2 | `apt/brew install radare2` | `choco install radare2` |
+| frida-tools | `pipx install frida-tools` | `pip install --user frida-tools` |
+| jadx | `brew install jadx` | `choco install jadx` |
+| apktool | `brew install apktool` | 官方 bat+jar 入 PATH |
+| Android SDK | platform-tools + build-tools（adb/aapt2/zipalign/apksigner） | 同左 |
+| JDK | keytool（签名） | 同左 |
+| Node.js | JS 逆向用 | 同左 |
+
+> 设备端 Frida 需另跑 `frida-server`；Android 重打包/Hook 需 Root + 设备。
+
+## IDA Pro MCP（可选）
+
+`ida-reverse` 配合第三方 MIT 包 **`ida-multi-mcp`**（pip 安装，本身跨平台），但**需自备 IDA Pro 9.x + idalib（商业授权）**。安装与 MCP 配置见 **[`mcp/README.md`](mcp/README.md)**。
+
+## 跨平台说明
+
+- **Skill 正文**（`SKILL.md` 及参考 `.md`）是纯 Markdown，三平台通用。
+- **脚本**：每个带脚本的 skill 同时提供
+  - `.ps1`（Windows，原始、已在 Windows 使用）
+  - `.sh`（Linux/macOS，从 .ps1 移植，**走 PATH 查找、无写死路径**；⚠️ 未在 Linux/Mac 实测，欢迎反馈/PR）
+
+## 许可与致谢
+
+- 本仓库是 Skill 的**整理与跨平台适配**集合，非全部原创。
+- `reverse-engineering` skill 标注 **MIT**；`ida-multi-mcp` 为第三方 **MIT** 包（仅文档引用，未分发其源码）。
+- 各 skill 改编自社区/OpenCode 的 skill 集，原作者写死的本机路径已占位化（`YOURNAME`）。如你是某 skill 原作者、希望补充署名或调整授权，请提 Issue。
+- `apk-reverse/debug.keystore` 仅为本地调试签名用的占位密钥，**切勿用于正式发布**。
+
+## 免责声明
+
+仅供个人学习与安全研究。请勿用于侵犯他人权益或违反相关服务条款的用途，因使用本仓库内容产生的一切后果由使用者自行承担。

@@ -1,0 +1,5 @@
+# 跨平台行尾：shell/通用文本用 LF，PowerShell 用 CRLF
+* text=auto eol=lf
+*.sh   text eol=lf
+*.ps1  text eol=crlf
+*.keystore binary

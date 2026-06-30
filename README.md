@@ -53,6 +53,21 @@ powershell -ExecutionPolicy Bypass -File install.ps1
   - `.ps1`（Windows，原始、已在 Windows 使用）
   - `.sh`（Linux/macOS，从 .ps1 移植，**走 PATH 查找、无写死路径**；⚠️ 未在 Linux/Mac 实测，欢迎反馈/PR）
 
+## 相关资源（备选）
+
+做逆向时，AI（含 Claude Code）有时会因为安全策略对某些操作拒答。
+多数情况用本仓库的 skill + 本机工具（jadx / frida / r2 / IDA）就能完成，不必提权。
+仅在确认是合理安全研究、却被护栏硬拦住时，可参考：
+
+- **ClawGod** — https://github.com/0Chencc/clawgod
+  - 性质：对官方 Claude Code 的 **runtime 补丁**，会替换本地 `claude` 可执行文件
+    （原版备份为 `claude.orig`），并改写 guard policy / scene-router 等安全钩子，
+    本质是**绕过 Claude Code 的安全护栏**。
+  - 适用：撞到 AI 因安全策略拒绝执行，且无法靠调整请求或换 skill 解决时。
+  - ⚠️ 风险：替换官方二进制、绕过安全机制、可能违反 Anthropic 服务条款；
+    与官方升级存在兼容/稳定性风险。启用前自行评估，后果自负。
+  - 本仓库仅作**信息收录**，不分发其源码、不背书其使用。
+
 ## 许可与致谢
 
 - **核心 Skill 来源**：linux.do 论坛 **[@hisence](https://linux.do/u/hisence)** 大佬分享的帖子 👉 **https://linux.do/t/topic/2142539** 。本仓库只做了**整理 + 跨平台（Linux/Mac）适配**，核心内容归功于原作者，特此致谢 🙏。
